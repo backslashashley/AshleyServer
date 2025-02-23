@@ -12,16 +12,16 @@
 		"sources": ""
 	},
 	"license": "CC0-1.0",
-	"icon": "assets/ashley_server/icon.png",
 	"environment": "*",
 	"entrypoints": {
-		"init": [
+		"server-init": [
 			"com.backslashashley.ashleyserver.AshleyServer"
 		]
 	},
 	"mixins": [
       "mixins.ashleymod.playtime.json"
 	],
+  "accessWidener": "ashleymod.accesswidener",
 	"depends": {
 		"fabricloader": ">=0.14.21",
 		"minecraft": "1.12.2",
