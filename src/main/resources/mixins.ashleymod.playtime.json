@@ -1,0 +1,19 @@
+{
+  "package": "com.backslashashley.ashleyserver.mixin",
+  "refmap": "mixins.ashleyserver.refmap.json",
+  "minVersion": "0.7.3",
+  "required": true,
+  "compatibilityLevel": "JAVA_8",
+  "server": [
+    "IShulkerBoxBlock",
+    "MixinCommandManager",
+    "MixinNaturalSpawner",
+    "ITabListS2CPacket",
+  ],
+  "mixins": [
+  ],
+
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

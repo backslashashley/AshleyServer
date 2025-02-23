@@ -1,30 +1,30 @@
 {
 	"schemaVersion": 1,
-	"id": "example_mod",
+	"id": "ashley_server",
 	"version": "${version}",
-	"name": "Example mod",
-	"description": "This is an example description! Tell everyone what your mod is about!",
+	"name": "Ashley Server",
+	"description": "",
 	"authors": [
-		"Me!"
+		"Ashley"
 	],
 	"contact": {
-		"homepage": "https://example.com/",
-		"sources": "https://github.com/OrnitheMC/ornithe-template-mod"
+		"homepage": "",
+		"sources": ""
 	},
 	"license": "CC0-1.0",
-	"icon": "assets/example_mod/icon.png",
+	"icon": "assets/ashley_server/icon.png",
 	"environment": "*",
 	"entrypoints": {
 		"init": [
-			"com.example.example_mod.ExampleMod"
+			"com.backslashashley.ashleyserver.AshleyServer"
 		]
 	},
 	"mixins": [
-		"example_mod.mixins.json"
+      "mixins.ashleymod.playtime.json"
 	],
 	"depends": {
 		"fabricloader": ">=0.14.21",
-		"minecraft": "1.7.2",
+		"minecraft": "1.12.2",
 		"osl-entrypoints": ">=0.4.0"
 	}
 }
