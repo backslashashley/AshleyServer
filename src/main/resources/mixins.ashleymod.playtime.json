@@ -15,7 +15,8 @@
     "MixinNaturalSpawner",
     "MixinServerPlayerInteractionManager",
     "MixinHopperBlock",
-    "MixinDispenserBlock"
+    "MixinDispenserBlock",
+    "MixinCraftingManager"
   ],
   "injectors": {
     "defaultRequire": 1
