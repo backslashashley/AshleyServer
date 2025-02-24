@@ -3,15 +3,19 @@
   "minVersion": "0.7.3",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
-    "MixinStats",
     "MixinServerPlayerEntity",
-    "MixinServerPlayNetworkHandler"
+    "MixinServerPlayNetworkHandler",
+    "MixinStats"
   ],
   "server": [
-    "MixinNaturalSpawner",
     "IShulkerBoxBlock",
     "ITabListS2CPacket",
-    "MixinCommandManager"
+    "MixinCommandManager",
+    "MixinMovingBlockEntity",
+    "MixinNaturalSpawner",
+    "MixinServerPlayerInteractionManager",
+    "MixinHopperBlock",
+    "MixinDispenserBlock"
   ],
   "injectors": {
     "defaultRequire": 1
