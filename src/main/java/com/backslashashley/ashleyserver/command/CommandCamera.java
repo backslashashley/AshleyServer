@@ -4,10 +4,7 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.command.exception.CommandException;
 import net.minecraft.server.command.source.CommandSource;
 import net.minecraft.server.entity.living.player.ServerPlayerEntity;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.GameMode;
-
-import java.util.UUID;
 
 public class CommandCamera extends CommandBase {
 
