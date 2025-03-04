@@ -16,7 +16,8 @@
     "MixinServerPlayerInteractionManager",
     "MixinHopperBlock",
     "MixinDispenserBlock",
-    "MixinCraftingManager"
+    "MixinCraftingManager",
+    "MixinFireworksItem"
   ],
   "injectors": {
     "defaultRequire": 1

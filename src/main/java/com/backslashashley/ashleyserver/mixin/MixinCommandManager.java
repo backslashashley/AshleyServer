@@ -22,6 +22,7 @@ public abstract class MixinCommandManager extends CommandRegistry implements Com
 		this.register(new CommandFindBlock());
 		this.register(new CommandUpTime());
 		this.register(new CommandCamera());
+		this.register(new CommandStat());
 	}
 
 	@Inject(method = "sendSuccess", at = @At("HEAD"), cancellable = true)

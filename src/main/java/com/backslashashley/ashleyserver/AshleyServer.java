@@ -1,6 +1,7 @@
 package com.backslashashley.ashleyserver;
 
 import com.backslashashley.ashleyserver.logging.LoggerRegistry;
+import com.backslashashley.ashleyserver.stat.ScoreboardHandler;
 import com.backslashashley.ashleyserver.util.AFKPlayer;
 import com.backslashashley.ashleyserver.util.HUDController;
 import net.minecraft.server.MinecraftServer;
@@ -26,6 +27,7 @@ public class AshleyServer implements ServerModInitializer {
 	@Override
 	public void initServer() {
 		LOGGER.info("Initializing Ashley Server");
+		ScoreboardHandler.genShorthand();
 		MinecraftServerEvents.START.register(AshleyServer::init);
 		MinecraftServerEvents.TICK_START.register(AshleyServer::tick);
 		MinecraftServerEvents.LOAD_WORLD.register(AshleyServer::onServerLoaded);
