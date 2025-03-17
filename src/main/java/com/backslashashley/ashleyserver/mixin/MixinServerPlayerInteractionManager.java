@@ -17,7 +17,13 @@ public class MixinServerPlayerInteractionManager {
 	@Shadow public ServerPlayerEntity player;
 	@Shadow public World world;
 
-	@Inject(method = "startMiningBlock", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/World;updateBlockMiningProgress(ILnet/minecraft/util/math/BlockPos;I)V"))
+	@Inject(
+		method = "startMiningBlock",
+		at = @At(
+			value = "INVOKE",
+			target = "Lnet/minecraft/world/World;updateBlockMiningProgress(ILnet/minecraft/util/math/BlockPos;I)V"
+		)
+	)
 	private void notifyUpdate(BlockPos pos, Direction face, CallbackInfo ci) {
 		this.player.networkHandler.sendPacket(new BlockUpdateS2CPacket(this.world, pos));
 	}

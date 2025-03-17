@@ -9,7 +9,6 @@ import org.spongepowered.asm.mixin.gen.Accessor;
 public interface ITabListS2CPacket {
 	@Accessor("header")
 	void setHeader(Text header);
-
 	@Accessor("footer")
 	void setFooter(Text footer);
 }

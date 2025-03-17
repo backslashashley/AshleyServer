@@ -19,7 +19,7 @@
 		]
 	},
 	"mixins": [
-      "mixins.ashleymod.playtime.json"
+      "mixins.ashleymod.json"
 	],
   "accessWidener": "ashleymod.accesswidener",
 	"depends": {

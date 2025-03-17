@@ -9,12 +9,9 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(ServerPlayerEntity.class)
-public class MixinServerPlayerEntity implements AFKPlayer {
-	@Unique
-	private boolean isAfk;
-
-	@Unique
-	private int tickLastAction;
+public class MixinServerPlayerEntity_AFK implements AFKPlayer {
+	@Unique private boolean isAfk;
+	@Unique private int tickLastAction;
 
 	@Override
 	public boolean isAfk() {

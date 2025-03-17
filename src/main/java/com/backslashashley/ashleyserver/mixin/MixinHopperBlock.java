@@ -12,7 +12,12 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(HopperBlock.class)
 public class MixinHopperBlock {
-	@Inject(method = "neighborChanged", at = @At("TAIL"))
+	@Inject(
+		method = "neighborChanged",
+		at = @At(
+			value = "TAIL"
+		)
+	)
 	public void neighborChanged(BlockState state, World world, BlockPos pos, Block neighborBlock, BlockPos neighborPos, CallbackInfo ci) {
 		world.notifyBlockChanged(pos, state, state, 0);
 	}

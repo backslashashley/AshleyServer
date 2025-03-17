@@ -14,7 +14,13 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(FireworksItem.class)
 public class MixinFireworksItem {
-	@Inject(method = "startUsing", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/World;addEntity(Lnet/minecraft/entity/Entity;)Z"))
+	@Inject(
+		method = "startUsing",
+		at = @At(
+			value = "INVOKE",
+			target = "Lnet/minecraft/world/World;addEntity(Lnet/minecraft/entity/Entity;)Z"
+		)
+	)
 	public void startUsing (World world, PlayerEntity player, InteractionHand hand, CallbackInfoReturnable<InteractionResultHolder<ItemStack>> cir) {
 		player.incrementStat(Stats.itemUsed(player.getHandStack(hand).getItem()));
 	}

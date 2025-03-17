@@ -1,5 +1,6 @@
 package com.backslashashley.ashleyserver.command;
 
+import com.backslashashley.ashleyserver.util.CameraPlayer;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.command.exception.CommandException;
 import net.minecraft.server.command.source.CommandSource;
@@ -36,13 +37,19 @@ public class CommandCamera extends CommandBase {
 			throw new CommandException("Cannot be suffocating");
 		}
 
-		if (player.interactionManager.getGameMode() == GameMode.SURVIVAL) {
+		CameraPlayer cameraPlayer = (CameraPlayer) player;
+		if (!cameraPlayer.isCameraMode()) { //Start camera mode
+			cameraPlayer.setCameraMode(true);
+			cameraPlayer.setSurvivalX(player.x);
+			cameraPlayer.setSurvivalY(player.y);
+			cameraPlayer.setSurvivalZ(player.z);
+
 			player.setGameMode(GameMode.SPECTATOR);
-		}
-		else if (player.interactionManager.getGameMode() == GameMode.SPECTATOR) {
+		} else { //End camera mode
+			cameraPlayer.setCameraMode(false);
+			player.teleport(cameraPlayer.getSurvivalX(), cameraPlayer.getSurvivalY(), cameraPlayer.getSurvivalZ());
+
 			player.setGameMode(GameMode.SURVIVAL);
 		}
-
-		//TODO Save position & rotation to prevent cheat
 	}
 }

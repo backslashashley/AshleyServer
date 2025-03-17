@@ -3,21 +3,24 @@
   "minVersion": "0.7.3",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
-    "MixinServerPlayerEntity",
+    "MixinServerPlayerEntity_AFK",
     "MixinServerPlayNetworkHandler",
     "MixinStats"
   ],
   "server": [
     "IShulkerBoxBlock",
     "ITabListS2CPacket",
+    "ICPacketPlayerDigging",
     "MixinCommandManager",
+    "MixinCraftingManager",
+    "MixinDispenserBlock",
+    "MixinFireworksItem",
+    "MixinHopperBlock",
     "MixinMovingBlockEntity",
     "MixinNaturalSpawner",
     "MixinServerPlayerInteractionManager",
-    "MixinHopperBlock",
-    "MixinDispenserBlock",
-    "MixinCraftingManager",
-    "MixinFireworksItem"
+    "MixinMinecraftServer",
+    "MixinServerPlayerEntity_Camera"
   ],
   "injectors": {
     "defaultRequire": 1

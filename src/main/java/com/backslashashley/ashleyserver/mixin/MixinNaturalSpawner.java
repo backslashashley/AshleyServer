@@ -23,13 +23,27 @@ public class MixinNaturalSpawner {
 	@Final
 	private static int MOB_CAPACITY_CHUNK_AREA;
 
-	@Inject(method = "tick", at = @At(value = "FIELD", target = "Lnet/minecraft/world/NaturalSpawner;MOB_CAPACITY_CHUNK_AREA:I", shift = At.Shift.AFTER), locals = LocalCapture.CAPTURE_FAILHARD)
+	@Inject(
+		method = "tick",
+		at = @At(
+			value = "FIELD",
+			target = "Lnet/minecraft/world/NaturalSpawner;MOB_CAPACITY_CHUNK_AREA:I",
+			shift = At.Shift.AFTER
+		),
+		locals = LocalCapture.CAPTURE_FAILHARD
+	)
 	private void getMobcaps(ServerWorld server, boolean spawnHostileMobs, boolean spawnPeacefulMobs, boolean spawnOnSetTickRate, CallbackInfoReturnable<Integer> cir, int chunkAddsToMobcap, int mobTypeSpawned, BlockPos spawnPoint, MobCategory[] mobCategories, int idk, int wtf, MobCategory mobCategory, int loadedOfMobCategory) {
 		final int mobCap = mobCategory.getCap() * chunkAddsToMobcap / MOB_CAPACITY_CHUNK_AREA;
 		SpawnReporter.mobcaps.get(server.dimension.getType().getId()).put(mobCategory, new Pair<>(loadedOfMobCategory, mobCap));
 	}
 
-	@Redirect(method = "tick", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/living/mob/MobCategory;values()[Lnet/minecraft/entity/living/mob/MobCategory;"))
+	@Redirect(
+		method = "tick",
+		at = @At(
+			value = "INVOKE",
+			target = "Lnet/minecraft/entity/living/mob/MobCategory;values()[Lnet/minecraft/entity/living/mob/MobCategory;"
+		)
+	)
 	private MobCategory[] preventUselessMobSpawningAttemptsInIncorrectDimensions(ServerWorld world) {
 		return world.dimension.isOverworld() ? OVERWORLD : OTHERWORLD;
 	}

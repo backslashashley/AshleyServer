@@ -14,7 +14,12 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(CommandManager.class)
 public abstract class MixinCommandManager extends CommandRegistry implements CommandListener {
-	@Inject(method = "<init>", at = @At("RETURN"))
+	@Inject(
+		method = "<init>",
+		at = @At(
+			value = "RETURN"
+		)
+	)
 	private void onCtor(MinecraftServer server, CallbackInfo ci) {
 		this.register(new CommandPing());
 		this.register(new CommandStackBoxes());
@@ -23,9 +28,18 @@ public abstract class MixinCommandManager extends CommandRegistry implements Com
 		this.register(new CommandUpTime());
 		this.register(new CommandCamera());
 		this.register(new CommandStat());
+		this.register(new CommandLogAutosave());
+		this.register(new CommandMacro());
+		this.register(new CommandBot());
 	}
 
-	@Inject(method = "sendSuccess", at = @At("HEAD"), cancellable = true)
+	@Inject(
+		method = "sendSuccess",
+		at = @At(
+			value = "HEAD"
+		),
+		cancellable = true
+	)
 	private void silenceRcon(CommandSource source, Command command, int flags, String message, Object[] args, CallbackInfo ci) {
 		if (source.getName().equals("Rcon")) {
 			ci.cancel();
