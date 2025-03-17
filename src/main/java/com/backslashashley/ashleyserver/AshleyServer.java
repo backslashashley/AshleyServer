@@ -61,11 +61,7 @@ public class AshleyServer implements ServerModInitializer {
 	}
 
 	private static void disconnect(MinecraftServer server, ServerPlayerEntity player) {
-		for (PlayerActionHandler playerActionHandler : PLAYER_ACTION_HANDLERS) {
-			if (playerActionHandler.player.getUuid() == player.getUuid()) {
-				PLAYER_ACTION_HANDLERS.remove(playerActionHandler);
-			}
-		}
+		PLAYER_ACTION_HANDLERS.removeIf(playerActionHandler -> playerActionHandler.player.getUuid() == player.getUuid());
 	}
 
 	public static void init(MinecraftServer server) {
