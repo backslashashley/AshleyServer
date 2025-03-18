@@ -16,18 +16,16 @@ import java.util.ArrayList;
 import java.util.UUID;
 
 public class AshleyServer implements ServerModInitializer {
-
 	public static final Logger LOGGER = LogManager.getLogger("Ashley Server");
+	public static final ArrayList<UUID> JOINED_PLAYERS_SINCE_RESTART = new ArrayList<>();
+	public static final ArrayList<PlayerActionHandler> PLAYER_ACTION_HANDLERS = new ArrayList<>();
+	public static final String MOD_VERSION = "2.0.3";
 
 	public static boolean logAutosave = false;
-
 	public static MinecraftServer server;
-	public static final ArrayList<UUID> joinedPlayersSinceRestart = new ArrayList<>();
-	public static final ArrayList<PlayerActionHandler> PLAYER_ACTION_HANDLERS = new ArrayList<>();
 
 	@Override
 	public void initServer() {
-		LOGGER.info("Initializing Ashley Server");
 		ScoreboardHandler.genShorthand();
 		MinecraftServerEvents.START.register(AshleyServer::init);
 		MinecraftServerEvents.TICK_START.register(AshleyServer::tick);
@@ -44,13 +42,14 @@ public class AshleyServer implements ServerModInitializer {
 
 	private static void onServerLoaded(MinecraftServer server) {
 		LoggerRegistry.initLoggers(server);
+		server.setMotd("v" + MOD_VERSION + " \u2014 " + server.getServerMotd());
 	}
 
 	private static void login(MinecraftServer server, ServerPlayerEntity player) {
 		LoggerRegistry.playerConnected(player);
 
-		if (!joinedPlayersSinceRestart.contains(player.getUuid())) {
-			joinedPlayersSinceRestart.add(player.getUuid());
+		if (!JOINED_PLAYERS_SINCE_RESTART.contains(player.getUuid())) {
+			JOINED_PLAYERS_SINCE_RESTART.add(player.getUuid());
 			player.server.commandHandler.run(player.asEntity(), "/log tps quiet");
 			player.server.commandHandler.run(player.asEntity(), "/log mobcaps quiet");
 		}

@@ -34,8 +34,6 @@ public abstract class MixinServerPlayNetworkHandler {
 			if (afkPlayer.getTickLastAction() > 0L && this.ticks - afkPlayer.getTickLastAction() > afkTime) {
 				afkPlayer.setAfk(true);
 				this.player.incrementStat(ModdedStats.MINUTES_PLAYED_NO_AFK, -afkTime);
-
-				AshleyServer.LOGGER.info("Player {} is now AFK", this.player.getName());
 			} else {
 				// Player is not AFK
 				this.player.incrementStat(ModdedStats.MINUTES_PLAYED_NO_AFK, 1);
@@ -56,7 +54,6 @@ public abstract class MixinServerPlayNetworkHandler {
 				((AFKPlayer) this.player).setTickLastAction(ticks);
 				if (((AFKPlayer) this.player).isAfk()) {
 					((AFKPlayer) this.player).setAfk(false);
-					AshleyServer.LOGGER.info("Player {} is not AFK", this.player.getName());
 				}
 			}
 		}

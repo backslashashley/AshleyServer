@@ -21,10 +21,12 @@ public class CommandMacro extends CommandBase {
 		return "Usage: macro <attack|use> <once|continuous|interval";
 	}
 
-	public void run(MinecraftServer server, CommandSource sender, String[] args) throws CommandException {
-		if (!(sender instanceof PlayerEntity)) {return;}
+	public void run(MinecraftServer server, CommandSource source, String[] args) throws CommandException {
+		if (!(source instanceof ServerPlayerEntity)) {
+			throw new CommandException("Unknown " + source.getName() + " tried to run /macro!");
+		}
 
-		ServerPlayerEntity playerMP = asPlayer(sender);
+		ServerPlayerEntity playerMP = asPlayer(source);
 
 		String action = args[0];
 
