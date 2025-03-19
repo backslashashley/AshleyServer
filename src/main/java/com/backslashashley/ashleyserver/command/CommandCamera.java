@@ -24,30 +24,36 @@ public class CommandCamera extends CommandBase {
 		if (!(source instanceof ServerPlayerEntity)) {
 			throw new CommandException("Unknown " + source.getName() + " tried to run /c!");
 		}
-
 		ServerPlayerEntity player = asPlayer(source);
+		CameraPlayer cameraPlayer = (CameraPlayer) player;
 
-		if (!player.onGround && player.interactionManager.getGameMode() == GameMode.SURVIVAL) {
+		if (!player.onGround && !cameraPlayer.isCameraMode()) {
 			throw new CommandException("Must be on solid ground");
 		}
-		if (player.isOnFire()) {
+		if (player.isOnFire() && !cameraPlayer.isCameraMode()) {
 			throw new CommandException("Must not be on fire");
 		}
-		if (player.isInWall()) {
+		if (player.isInWall() && !cameraPlayer.isCameraMode()) {
 			throw new CommandException("Cannot be suffocating");
 		}
 
-		CameraPlayer cameraPlayer = (CameraPlayer) player;
-		if (!cameraPlayer.isCameraMode()) { //Start camera mode
+		if (!cameraPlayer.isCameraMode()) { //Enter camera mode
 			cameraPlayer.setCameraMode(true);
 			cameraPlayer.setSurvivalX(player.x);
 			cameraPlayer.setSurvivalY(player.y);
 			cameraPlayer.setSurvivalZ(player.z);
+			cameraPlayer.setSurvivalYaw(player.yaw);
+			cameraPlayer.setSurvivalPitch(player.pitch);
 
 			player.setGameMode(GameMode.SPECTATOR);
-		} else { //End camera mode
+		} else { //Exit camera mode
 			cameraPlayer.setCameraMode(false);
-			player.teleport(cameraPlayer.getSurvivalX(), cameraPlayer.getSurvivalY(), cameraPlayer.getSurvivalZ());
+			player.networkHandler.teleport(
+				cameraPlayer.getSurvivalX(),
+				cameraPlayer.getSurvivalY(),
+				cameraPlayer.getSurvivalZ(),
+				cameraPlayer.getSurvivalYaw(),
+				cameraPlayer.getSurvivalPitch());
 
 			player.setGameMode(GameMode.SURVIVAL);
 		}

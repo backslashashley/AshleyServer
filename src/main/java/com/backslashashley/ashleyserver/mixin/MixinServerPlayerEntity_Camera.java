@@ -11,6 +11,8 @@ public class MixinServerPlayerEntity_Camera implements CameraPlayer {
 	@Unique private double survivalX;
 	@Unique private double survivalY;
 	@Unique private double survivalZ;
+	@Unique private float survivalYaw;
+	@Unique private float survivalPitch;
 
 	@Override
 	public boolean isCameraMode() {
@@ -46,5 +48,23 @@ public class MixinServerPlayerEntity_Camera implements CameraPlayer {
 	@Override
 	public void setSurvivalZ(double survivalZ) {
 		this.survivalZ = survivalZ;
+	}
+
+	@Override
+	public float getSurvivalYaw() {
+		return this.survivalYaw;
+	}
+	@Override
+	public float getSurvivalPitch() {
+		return this.survivalPitch;
+	}
+
+	@Override
+	public void setSurvivalYaw(float survivalYaw) {
+		this.survivalYaw = survivalYaw;
+	}
+	@Override
+	public void setSurvivalPitch(float survivalPitch) {
+		this.survivalPitch = survivalPitch;
 	}
 }
