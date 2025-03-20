@@ -34,10 +34,14 @@ public abstract class MixinServerPlayNetworkHandler {
 			if (afkPlayer.getTickLastAction() > 0L && this.ticks - afkPlayer.getTickLastAction() > afkTime) {
 				afkPlayer.setAfk(true);
 				this.player.incrementStat(ModdedStats.MINUTES_PLAYED_NO_AFK, -afkTime);
+				this.player.incrementStat(ModdedStats.MINUTES_AFK, afkTime);
 			} else {
 				// Player is not AFK
 				this.player.incrementStat(ModdedStats.MINUTES_PLAYED_NO_AFK, 1);
 			}
+		}
+		else {
+			this.player.incrementStat(ModdedStats.MINUTES_AFK, 1);
 		}
 	}
 
