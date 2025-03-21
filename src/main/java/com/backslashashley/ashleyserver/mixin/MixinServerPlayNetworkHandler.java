@@ -1,6 +1,5 @@
 package com.backslashashley.ashleyserver.mixin;
 
-import com.backslashashley.ashleyserver.AshleyServer;
 import com.backslashashley.ashleyserver.util.AFKPlayer;
 import com.backslashashley.ashleyserver.stat.ModdedStats;
 import net.minecraft.network.packet.c2s.play.PlayerMoveC2SPacket;

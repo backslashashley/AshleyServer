@@ -1,2 +1,3 @@
 stat.playOneMinuteNoAFK=Time Played No AFK
-stat.minutesAFK=Time spent AFK
+stat.minutesAFK=Time Spent AFK
+stat.totalDigs = Total Digs

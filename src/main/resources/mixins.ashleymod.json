@@ -5,7 +5,8 @@
   "mixins": [
     "MixinServerPlayerEntity_AFK",
     "MixinServerPlayNetworkHandler",
-    "MixinStats"
+    "MixinStats",
+    "MixinItemStack"
   ],
   "server": [
     "IShulkerBoxBlock",
