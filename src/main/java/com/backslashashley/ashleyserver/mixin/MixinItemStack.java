@@ -24,7 +24,6 @@ public class MixinItemStack {
 		if (player.getMainHandStack().getItem() instanceof PickaxeItem ||
 			player.getMainHandStack().getItem() instanceof ShovelItem ||
 			player.getMainHandStack().getItem() instanceof AxeItem) {
-			System.out.println("Test");
 			player.incrementStat(ModdedStats.TOTAL_DIGS);
 		}
 	}
