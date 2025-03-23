@@ -5,10 +5,12 @@ import com.backslashashley.ashleyserver.stat.ModdedStats;
 import net.minecraft.network.packet.c2s.play.PlayerMoveC2SPacket;
 import net.minecraft.server.entity.living.player.ServerPlayerEntity;
 import net.minecraft.server.network.handler.ServerPlayNetworkHandler;
+import org.apache.logging.log4j.Logger;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(ServerPlayNetworkHandler.class)
@@ -52,7 +54,6 @@ public abstract class MixinServerPlayNetworkHandler {
 	)
 	private void updateLastActionTime(PlayerMoveC2SPacket packet, CallbackInfo ci) {
 		if (packet instanceof PlayerMoveC2SPacket) {
-			// TODO I think this if statement targets player doing mouse movement?
 			if (packet.hasAngles) {
 				((AFKPlayer) this.player).setTickLastAction(ticks);
 				if (((AFKPlayer) this.player).isAfk()) {
@@ -61,4 +62,13 @@ public abstract class MixinServerPlayNetworkHandler {
 			}
 		}
 	}
+
+	@Redirect(
+		method = "handlePlayerMove",
+		at = @At(
+			value = "INVOKE",
+			target = "Lorg/apache/logging/log4j/Logger;warn(Ljava/lang/String;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;)V")
+	)
+	public void silenceMovedTooQuickly(Logger instance, String s, Object a, Object b, Object c, Object d) {}
+
 }

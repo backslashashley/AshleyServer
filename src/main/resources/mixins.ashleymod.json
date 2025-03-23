@@ -21,7 +21,9 @@
     "MixinNaturalSpawner",
     "MixinServerPlayerInteractionManager",
     "MixinMinecraftServer",
-    "MixinServerPlayerEntity_Camera"
+    "MixinServerPlayerEntity_Camera",
+    "MixinLivingEntity",
+    "MixinMobEntity"
   ],
   "injectors": {
     "defaultRequire": 1
