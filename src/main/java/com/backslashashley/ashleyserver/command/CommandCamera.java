@@ -11,12 +11,12 @@ public class CommandCamera extends CommandBase {
 
 	@Override
 	public String getName() {
-		return "c";
+		return "cam";
 	}
 
 	@Override
 	public String getUsage(CommandSource source) {
-		return "c";
+		return "cam";
 	}
 
 	@Override
