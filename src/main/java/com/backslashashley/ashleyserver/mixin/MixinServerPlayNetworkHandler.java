@@ -71,4 +71,11 @@ public abstract class MixinServerPlayNetworkHandler {
 	)
 	public void silenceMovedTooQuickly(Logger instance, String s, Object a, Object b, Object c, Object d) {}
 
+	@Redirect(
+		method = "handlePlayerMove",
+		at = @At(
+			value = "INVOKE",
+			target = "Lorg/apache/logging/log4j/Logger;warn(Ljava/lang/String;Ljava/lang/Object;)V")
+	)
+	public void silenceMoveWrongly(Logger instance, String s, Object a) {}
 }
