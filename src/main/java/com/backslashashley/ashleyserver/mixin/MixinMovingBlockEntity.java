@@ -21,6 +21,6 @@ public class MixinMovingBlockEntity extends BlockEntity {
 	)
 	private void tick(CallbackInfo ci) {
 		final BlockState state = this.world.getBlockState(this.pos);
-		this.world.onBlockChanged(pos.offset(state.get(PistonHeadBlock.FACING).getOpposite()), state.getBlock(), false);
+		this.world.notifyBlockChanged(pos.offset(state.get(PistonHeadBlock.FACING).getOpposite()), state, state, 0);
 	}
 }
