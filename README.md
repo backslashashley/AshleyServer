@@ -44,3 +44,6 @@ Fixes piston ghost blocks and mining ghost blocks.
 
 - ### Shit scoreboard system.
 Allows players to easily change the scoreboard displays using `/stat`. The backend for this sucks and needs a rewrite.
+
+- ### Find Block Command
+`/findblock [block]` will list the block positions of all matching blocks in the chunk the player is standing in. Insanely cheat, used for nether fires.
