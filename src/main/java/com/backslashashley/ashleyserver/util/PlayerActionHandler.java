@@ -121,7 +121,7 @@ public class PlayerActionHandler {
 	}
 
 	public void attackOnce() {
-		HitResult hitResult = mouseOver();
+		HitResult hitResult = mouseOver(player);
 		if (hitResult == null) {
 			return;
 		}
@@ -146,7 +146,7 @@ public class PlayerActionHandler {
 	}
 
 	public boolean useOnce() {
-		HitResult hitResult = mouseOver();
+		HitResult hitResult = mouseOver(player);
 		if (hitResult == null) {
 			return false;
 		}
@@ -204,14 +204,14 @@ public class PlayerActionHandler {
 		return false;
 	}
 
-	private HitResult rayTraceBlocks(double blockReachDistance) {
+	private static HitResult rayTraceBlocks(double blockReachDistance, ServerPlayerEntity player) {
 		Vec3d eyeVec = player.getEyePosition(1.0F);
 		Vec3d lookVec = player.getRotationVec(1.0F);
 		Vec3d pointVec = eyeVec.add(lookVec.x * blockReachDistance, lookVec.y * blockReachDistance, lookVec.z * blockReachDistance);
 		return player.getSourceWorld().rayTrace(eyeVec, pointVec, false, false, true);
 	}
 
-	public HitResult mouseOver() {
+	public static HitResult mouseOver(ServerPlayerEntity player) {
 		World world = player.getSourceWorld();
 		if (world == null)
 			return null;
@@ -219,7 +219,7 @@ public class PlayerActionHandler {
 
 		Entity pointedEntity = null;
 		double reach = player.isCreative() ? 5.0D : 4.5D;
-		result = rayTraceBlocks(reach);
+		result = rayTraceBlocks(reach, player);
 		Vec3d eyeVec = 	player.getEyePosition(1.0F);
 		boolean flag = !player.isCreative();
 		if (player.isCreative()) reach = 6.0D;

@@ -1,6 +1,5 @@
 package com.backslashashley.ashleyserver.command;
 
-import net.minecraft.block.CommandBlock;
 import com.backslashashley.ashleyserver.logging.LogHandler;
 import com.backslashashley.ashleyserver.logging.Logger;
 import com.backslashashley.ashleyserver.logging.LoggerRegistry;

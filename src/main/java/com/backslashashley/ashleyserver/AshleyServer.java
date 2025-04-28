@@ -19,7 +19,7 @@ public class AshleyServer implements ServerModInitializer {
 	public static final Logger LOGGER = LogManager.getLogger("Ashley Server");
 	public static final ArrayList<UUID> JOINED_PLAYERS_SINCE_RESTART = new ArrayList<>();
 	public static final ArrayList<PlayerActionHandler> PLAYER_ACTION_HANDLERS = new ArrayList<>();
-	public static final String MOD_VERSION = "2.0.9";
+	public static final String MOD_VERSION = "2.1.0";
 
 	public static boolean logAutosave = false;
 	public static MinecraftServer server;

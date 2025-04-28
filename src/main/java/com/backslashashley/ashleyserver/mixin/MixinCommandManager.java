@@ -31,6 +31,7 @@ public abstract class MixinCommandManager extends CommandRegistry implements Com
 		this.register(new CommandLogAutosave());
 		this.register(new CommandMacro());
 		this.register(new CommandBot());
+		this.register(new CommandFollowRange());
 	}
 
 	@Inject(

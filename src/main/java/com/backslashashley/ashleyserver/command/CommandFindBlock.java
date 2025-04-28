@@ -58,6 +58,7 @@ public class CommandFindBlock extends CommandBase {
 
 	@Override
 	public List<String> getSuggestions(MinecraftServer server, CommandSource source, String[] args, BlockPos targetPos) {
+		//oh my
 		String[] fakeArgs = {"x", "y", "z", args[0]};
 		return server.commandHandler.getCommands().get("setblock").getSuggestions(server, source, fakeArgs, targetPos);
 	}
