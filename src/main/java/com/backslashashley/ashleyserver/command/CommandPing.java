@@ -24,7 +24,7 @@ public class CommandPing extends CommandBase {
 	@Override
 	public void run(MinecraftServer server, CommandSource source, String[] args) throws CommandException {
 		if (!(source instanceof ServerPlayerEntity)) {
-			throw new CommandException("Unknown " + source.getName() + " tried to run /macro!");
+			throw new CommandException("Unknown " + source.getName() + " tried to run /ping!");
 		}
 
 		ServerPlayerEntity player = asPlayer(source);
