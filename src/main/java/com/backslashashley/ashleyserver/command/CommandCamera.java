@@ -22,10 +22,17 @@ public class CommandCamera extends CommandBase {
 	@Override
 	public void run(MinecraftServer server, CommandSource source, String[] args) throws CommandException {
 		if (!(source instanceof ServerPlayerEntity)) {
-			throw new CommandException("Unknown " + source.getName() + " tried to run /c!");
+			throw new CommandException("Unknown " + source.getName() + " tried to run /cam!");
 		}
 		ServerPlayerEntity player = asPlayer(source);
 		CameraPlayer cameraPlayer = (CameraPlayer) player;
+
+		boolean doTeleport = true;
+
+		if (player.interactionManager.getGameMode() == GameMode.SPECTATOR && !cameraPlayer.isCameraMode()) {
+			cameraPlayer.setCameraMode(true);
+			doTeleport = false;
+		}
 
 		if (!player.onGround && !cameraPlayer.isCameraMode()) {
 			throw new CommandException("Must be on solid ground");
@@ -48,12 +55,14 @@ public class CommandCamera extends CommandBase {
 			player.setGameMode(GameMode.SPECTATOR);
 		} else { //Exit camera mode
 			cameraPlayer.setCameraMode(false);
-			player.networkHandler.teleport(
-				cameraPlayer.getSurvivalX(),
-				cameraPlayer.getSurvivalY(),
-				cameraPlayer.getSurvivalZ(),
-				cameraPlayer.getSurvivalYaw(),
-				cameraPlayer.getSurvivalPitch());
+			if (doTeleport) {
+				player.networkHandler.teleport(
+					cameraPlayer.getSurvivalX(),
+					cameraPlayer.getSurvivalY(),
+					cameraPlayer.getSurvivalZ(),
+					cameraPlayer.getSurvivalYaw(),
+					cameraPlayer.getSurvivalPitch());
+			}
 
 			player.setGameMode(GameMode.SURVIVAL);
 		}
