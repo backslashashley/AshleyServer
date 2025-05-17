@@ -15,11 +15,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(ServerPlayNetworkHandler.class)
 public abstract class MixinServerPlayNetworkHandler {
-	@Shadow
-	public ServerPlayerEntity player;
-
-	@Shadow
-	private int ticks;
+	@Shadow public ServerPlayerEntity player;
+	@Shadow private int ticks;
 
 	@Inject(
 		method = "tick",
@@ -53,13 +50,18 @@ public abstract class MixinServerPlayNetworkHandler {
 		)
 	)
 	private void updateLastActionTime(PlayerMoveC2SPacket packet, CallbackInfo ci) {
-		if (packet instanceof PlayerMoveC2SPacket) {
-			if (packet.hasAngles && !player.hasVehicle()) {
-				((AFKPlayer) this.player).setTickLastAction(ticks);
-				if (((AFKPlayer) this.player).isAfk()) {
-					((AFKPlayer) this.player).setAfk(false);
-				}
+		AFKPlayer afkPlayer = (AFKPlayer) this.player;
+		if (afkPlayer.getLastPitch() != this.player.pitch ||
+			afkPlayer.getLastYaw() != this.player.yaw) {
+
+			afkPlayer.setTickLastAction(ticks);
+
+			if (afkPlayer.isAfk()) {
+				afkPlayer.setAfk(false);
 			}
+
+			afkPlayer.setLastPitch(this.player.pitch);
+			afkPlayer.setLastYaw(this.player.yaw);
 		}
 	}
 

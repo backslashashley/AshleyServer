@@ -12,6 +12,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class MixinServerPlayerEntity_AFK implements AFKPlayer {
 	@Unique private boolean isAfk;
 	@Unique private int tickLastAction;
+	@Unique private float lastPitch;
+	@Unique private float lastYaw;
 
 	@Override
 	public boolean isAfk() {
@@ -32,6 +34,27 @@ public class MixinServerPlayerEntity_AFK implements AFKPlayer {
 	public void setTickLastAction(int time) {
 		this.tickLastAction = time;
 	}
+
+	@Override
+	public void setLastPitch(float pitch) {
+		this.lastPitch = pitch;
+	}
+
+	@Override
+	public void setLastYaw(float yaw) {
+		this.lastYaw = yaw;
+	}
+
+	@Override
+	public float getLastPitch() {
+		return lastPitch;
+	}
+
+	@Override
+	public float getLastYaw() {
+		return lastYaw;
+	}
+
 
 	@Inject(
 		method = "copyFrom",
