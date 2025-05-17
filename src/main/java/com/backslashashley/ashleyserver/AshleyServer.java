@@ -10,13 +10,10 @@ import net.minecraft.server.entity.living.player.ServerPlayerEntity;
 import net.ornithemc.osl.entrypoints.api.server.ServerModInitializer;
 import net.ornithemc.osl.lifecycle.api.server.MinecraftServerEvents;
 import net.ornithemc.osl.networking.api.server.ServerConnectionEvents;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import java.util.ArrayList;
 import java.util.UUID;
 
 public class AshleyServer implements ServerModInitializer {
-	public static final Logger LOGGER = LogManager.getLogger("Ashley Server");
 	public static final ArrayList<UUID> JOINED_PLAYERS_SINCE_RESTART = new ArrayList<>();
 	public static final ArrayList<PlayerActionHandler> PLAYER_ACTION_HANDLERS = new ArrayList<>();
 	public static final String MOD_VERSION = "2.1.3";
