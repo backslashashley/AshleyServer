@@ -54,7 +54,7 @@ public abstract class MixinServerPlayNetworkHandler {
 	)
 	private void updateLastActionTime(PlayerMoveC2SPacket packet, CallbackInfo ci) {
 		if (packet instanceof PlayerMoveC2SPacket) {
-			if (packet.hasAngles) {
+			if (packet.hasAngles && !player.hasVehicle()) {
 				((AFKPlayer) this.player).setTickLastAction(ticks);
 				if (((AFKPlayer) this.player).isAfk()) {
 					((AFKPlayer) this.player).setAfk(false);
