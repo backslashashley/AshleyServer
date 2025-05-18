@@ -1,6 +1,6 @@
 # Ashley's Server!
 
-My custom 1.12 server with my silly features.
+My custom 1.12.2 Minecraft server with my silly features.
 Based on bismuth's server mod
 
 
