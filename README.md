@@ -19,7 +19,7 @@ Using a firework with an Elytra will now increment the use firework statistic.
 Hoppers, droppers and dispensers will now send block state updates to the client.
 
 - ### Camera Mode
-Executing the command `/cam` will put the player into spectator and save their position and rotation. Executing the command again will put them back into survival and restore their position and rotation
+Executing the command `/cam` will put the player into spectator and save their position and rotation. Executing the command again will put them back into survival and restore their position and rotation.
 
 - ### Total Digs Statistic
 Combines pickaxe, axe, and shovel usage across all tool types into one unified dig statistic.
